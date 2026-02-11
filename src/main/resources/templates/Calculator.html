@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator API Simulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-top: 4px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            ring: 2px solid #3b82f6;
+        }
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+        .result-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+<div class="max-w-5xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-slate-800">Calculator API Simulation</h1>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Arithmetic Utility Section -->
+        <div class="card p-6">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-blue-100 p-3 rounded-lg">
+                    <i class="fas fa-calculator text-blue-600 text-xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800">Arithmetic Utility</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-sm font-medium text-slate-600">Operand 1</label>
+                        <input type="number" id="arith_o1" class="input-field" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="text-sm font-medium text-slate-600">Operand 2 / Exponent</label>
+                        <input type="number" id="arith_o2" class="input-field" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="arithmeticAction('add')" class="btn-primary text-sm py-2">Add</button>
+                </div>
+
+                <div id="arith_result_container" class="hidden">
+                    <label class="text-sm font-medium text-slate-600">Result</label>
+                    <pre id="arith_result" class="result-box mt-1 text-sm overflow-x-auto"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vector Utility Section -->
+        <div class="card p-6">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-emerald-100 p-3 rounded-lg">
+                    <i class="fas fa-arrows-up-down-left-right text-emerald-600 text-xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800">Vector Utility</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Vector 1 (comma separated)</label>
+                    <input type="text" id="vec_v1" class="input-field" placeholder="1.0, 2.5, 3.0">
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Vector 2 (comma separated)</label>
+                    <input type="text" id="vec_v2" class="input-field" placeholder="4.0, 5.0, 6.0 or scalar">
+                </div>
+
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="vectorAction('add')" class="btn-primary text-sm py-2 bg-emerald-600 hover:bg-emerald-700">Add</button>
+                </div>
+
+                <div id="vec_result_container" class="hidden">
+                    <label class="text-sm font-medium text-slate-600">Result</label>
+                    <pre id="vec_result" class="result-box mt-1 text-sm overflow-x-auto border-emerald-500"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    // Mock Utility Services (Simulating Java Backend Logic)
+    const ArithmeticUtility = {
+        add: (a, b) => a + b,
+        subtract: (a, b) => a - b,
+        multiply: (a, b) => a * b,
+        divide: (a, b) => {
+            if (b === 0) throw new Error("Division by zero");
+            return a / b;
+        },
+        exponent: (a, n) => Math.pow(a, n)
+    };
+
+    const VectorUtility = {
+        parse: (str) => str.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n)),
+        add: (v1, v2) => v1.map((val, i) => val + v2[i]),
+        subtract: (v1, v2) => v1.map((val, i) => val - v2[i]),
+        multiply: (v1, scalar) => v1.map(val => val * scalar),
+        dotProduct: (v1, v2) => v1.reduce((acc, val, i) => acc + (val * v2[i]), 0),
+        norm: (v1) => Math.sqrt(v1.reduce((acc, val) => acc + (val * val), 0))
+    };
+
+    // UI Controllers
+    function arithmeticAction(type) {
+        const o1 = parseFloat(document.getElementById('arith_o1').value) || 0;
+        const o2 = parseFloat(document.getElementById('arith_o2').value) || 0;
+        let result;
+
+        try {
+            switch(type) {
+                case 'add': result = ArithmeticUtility.add(o1, o2); break;
+            }
+            showResult('arith', result);
+        } catch (e) {
+            showResult('arith', e.message);
+        }
+    }
+
+    function vectorAction(type) {
+        const v1Str = document.getElementById('vec_v1').value;
+        const v2Str = document.getElementById('vec_v2').value;
+
+        const v1 = VectorUtility.parse(v1Str);
+        let result;
+
+        if (v1.length === 0) {
+            showResult('vec', { error: "Vector 1 is invalid or empty" });
+            return;
+        }
+
+        try {
+            const v2 = VectorUtility.parse(v2Str);
+                if (v2.length !== v1.length) throw new Error("Vectors must have the same dimension");
+
+                if (type === 'add') result = VectorUtility.add(v1, v2);
+
+            showResult('vec', result);
+        } catch (e) {
+            showResult('vec', e.message);
+        }
+    }
+
+    function showResult(prefix, data) {
+        const container = document.getElementById(prefix + '_result_container');
+        const display = document.getElementById(prefix + '_result');
+        container.classList.remove('hidden');
+        display.textContent = data;
+    }
+</script>
+</body>
+</html>
