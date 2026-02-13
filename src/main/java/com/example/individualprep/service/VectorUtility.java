@@ -18,14 +18,12 @@ public final class VectorUtility {
         return new double[] {0.0, 0.0, 0.0};
     }
 
-    /**
-     * Subtracts two vectors.
-     * @param v1 first vector
-     * @param v2 second vector
-     * @return result of subtraction
-     */
-    public double[] subtract(final double[] v1, final double[] v2) {
-        return new double[] {0.0, 0.0, 0.0};
+    public double[] subtract(double[] v1, double[] v2) {
+        double[]hasil= new double[v1.length];
+        for (int i=0; i<v1.length;i++){
+            hasil[i]=v1[i]-v2[i];
+        }
+        return hasil;
     }
 
     /**
