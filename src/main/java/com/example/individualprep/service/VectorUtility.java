@@ -44,6 +44,9 @@ public final class VectorUtility {
      * @return the result of multiplying v1 by x
      */
     public double[] multiply(final double[] v1, final int x) {
+        if (v1 == null){
+            throw new IllegalArgumentException("vector cant be null");
+        }
         double[] result = new double[v1.length];
         for (int i = 0; i < v1.length; i++) {
             result[i] = v1[i] * x;
