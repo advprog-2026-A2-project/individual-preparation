@@ -40,7 +40,7 @@ public final class ArithmeticUtility {
      * @return the product of o1 and o2
      */
     public double multiply(final double o1, final double o2) {
-        return 0.0;
+        return o1 * o2;
     }
 
     /**
