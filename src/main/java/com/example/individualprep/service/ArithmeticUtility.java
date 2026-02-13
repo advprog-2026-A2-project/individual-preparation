@@ -29,7 +29,7 @@ public final class ArithmeticUtility {
      * @return the difference when o2 is subtracted from o1
      */
     public double subtract(final double o1, final double o2) {
-        return 0.0;
+        return o1 - o2;
     }
 
     /**
