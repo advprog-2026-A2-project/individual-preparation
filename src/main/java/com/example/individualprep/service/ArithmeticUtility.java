@@ -21,12 +21,13 @@ public class ArithmeticUtility {
     }
 
     public double divide(double o1, double o2) {
-        // TODO: Implement me properly!
-        return 0.0;
+        if (o2==0){
+            return 0;
+        }
+        return o1/o2;
     }
 
     public double exponent(double o1, int n) {
-        // TODO: Implement me properly!
         return 0.0;
     }
 }
