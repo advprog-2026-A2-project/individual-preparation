@@ -65,6 +65,6 @@ public final class ArithmeticUtility {
      * @return the result of o1 raised to the power of n
      */
     public double exponent(final double o1, final int n) {
-        return 0.0;
+        return Math.pow(o1, n);
     }
 }
