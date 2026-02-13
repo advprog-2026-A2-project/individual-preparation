@@ -4,7 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-public class ArithmeticUtilityTest {
+
+/**
+ * Tests for {@link ArithmeticUtility}.
+ */
+final class ArithmeticUtilityTest {
 
     private ArithmeticUtility arithmeticUtility;
 
@@ -15,8 +19,16 @@ public class ArithmeticUtilityTest {
 
     @Test
     void multiplyTest() {
-        assertEquals(6, arithmeticUtility.multiply(2.0,3.0));
-        assertEquals(-20, arithmeticUtility.multiply(5.0,-4.0));
-        assertEquals(9, arithmeticUtility.multiply(-3.0, -3.0));
+        double num1 = 2.0;
+        double num2 = 3.0;
+        double num3 = -4.0;
+        double num4 = -5.0;
+        double result1 = num1 * num2;
+        double result2 = num2 * num3;
+        double result3 = num3 * num4;
+
+        assertEquals(result1, arithmeticUtility.multiply(num1, num2));
+        assertEquals(result2, arithmeticUtility.multiply(num2, num3));
+        assertEquals(result3, arithmeticUtility.multiply(num3, num4));
     }
 }
