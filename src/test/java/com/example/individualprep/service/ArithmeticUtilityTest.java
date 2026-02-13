@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 final class ArithmeticUtilityTest {
 
-    /*Arithmetic utility under test.*/
+    /**Arithmetic utility under test.*/
     private ArithmeticUtility arithmeticUtility;
 
     @BeforeEach
@@ -22,13 +22,9 @@ final class ArithmeticUtilityTest {
     @SuppressWarnings("checkstyle:MagicNumber")
     @Test
     void multiplyTest() {
-        /*first positive number*/
         double num1 = 2.0;
-        /*second positive number*/
         double num2 = 3.0;
-        /*first negative number*/
         double num3 = -4.0;
-        /*second negative number*/
         double num4 = -5.0;
         double result1 = num1 * num2;
         double result2 = num2 * num3;
