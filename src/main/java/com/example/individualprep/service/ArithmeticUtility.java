@@ -22,7 +22,7 @@ public class ArithmeticUtility {
 
     public double divide(double o1, double o2) {
         if (o2==0){
-            return 0;
+            return 0.0;
         }
         return o1/o2;
     }
