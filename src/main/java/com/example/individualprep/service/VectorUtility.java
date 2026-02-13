@@ -76,6 +76,11 @@ public final class VectorUtility {
      * @return the norm of the vector
      */
     public double norm(final double[] v1) {
-        return 0.0;
+        double sum = 0.0;
+        for (double value : v1) {
+            sum += value * value;
+        }
+
+        return Math.sqrt(sum);
     }
 }
