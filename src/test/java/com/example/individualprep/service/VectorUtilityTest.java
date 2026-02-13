@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Tests for {@link VectorUtility}.
  */
-public class VectorUtilityTest {
-    /**Arithmetic utility under test.*/
+final class VectorUtilityTest {
+    /**Vector utility under test.*/
     private VectorUtility vectorUtility;
 
     @BeforeEach
     void setUp() {
-        /* Arithmetic utility under test. */
+        /* Vector utility under test. */
         vectorUtility = new VectorUtility();
     }
 
@@ -30,7 +30,8 @@ public class VectorUtilityTest {
         double[] result2 = {-14.0, -21.0, -28.0, -35.0};
         double[] result3 = {14.0, 21.0, 28.0, 35.0};
 
-        assertThrows(IllegalArgumentException.class, () -> vectorUtility.multiply(null, num1));
+        assertThrows(IllegalArgumentException.class, ()
+                -> vectorUtility.multiply(null, num1));
         assertArrayEquals(result1, vectorUtility.multiply(vector1, num1));
         assertArrayEquals(result2, vectorUtility.multiply(vector1, num2));
         assertArrayEquals(result3, vectorUtility.multiply(vector2, num2));
