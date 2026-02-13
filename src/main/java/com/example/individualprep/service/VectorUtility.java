@@ -44,7 +44,14 @@ public final class VectorUtility {
      * @return the result of multiplying v1 by x
      */
     public double[] multiply(final double[] v1, final int x) {
-        return new double[]{0.0, 0.0, 0.0};
+        if (v1 == null) {
+            throw new IllegalArgumentException("vector cant be null");
+        }
+        double[] result = new double[v1.length];
+        for (int i = 0; i < v1.length; i++) {
+            result[i] = v1[i] * x;
+        }
+        return result;
     }
 
     /**
@@ -55,7 +62,14 @@ public final class VectorUtility {
      * @return the dot product value
      */
     public double dotProduct(final double[] v1, final double[] v2) {
-        return 0.0;
+        if (v1.length != v2.length) {
+            throw new IllegalArgumentException("Vector length must be equal");
+        }
+        double result = 0;
+        for (int i = 0; i < v1.length; i++) {
+            result += v1[i] * v2[i];
+        }
+        return result;
     }
 
     /**
@@ -65,6 +79,11 @@ public final class VectorUtility {
      * @return the norm of the vector
      */
     public double norm(final double[] v1) {
-        return 0.0;
+        double sum = 0.0;
+        for (double value : v1) {
+            sum += value * value;
+        }
+
+        return Math.sqrt(sum);
     }
 }
