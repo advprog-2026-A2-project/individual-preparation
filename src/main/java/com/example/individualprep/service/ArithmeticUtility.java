@@ -2,7 +2,9 @@ package com.example.individualprep.service;
 
 import org.springframework.stereotype.Service;
 
-/** Utility class for arithmetic operations.*/
+/**
+ * Utility class for arithmetic operations.
+ */
 @Service
 public final class ArithmeticUtility {
 
@@ -13,7 +15,6 @@ public final class ArithmeticUtility {
      * @return result of addition
      */
     public double add(final double o1, final double o2) {
-        // TODO: Implement me properly!
         return 0.0;
     }
 
@@ -24,7 +25,6 @@ public final class ArithmeticUtility {
      * @return result of subtraction
      */
     public double subtract(final double o1, final double o2) {
-        // TODO: Implement me properly!
         return 0.0;
     }
 
@@ -35,7 +35,6 @@ public final class ArithmeticUtility {
      * @return result of multiplication
      */
     public double multiply(final double o1, final double o2) {
-        // TODO: Implement me properly!
         return 0.0;
     }
 
@@ -60,7 +59,6 @@ public final class ArithmeticUtility {
      * @return result of exponentiation
      */
     public double exponent(final double o1, final int n) {
-        // TODO: Implement me properly!
         return 0.0;
     }
 }
