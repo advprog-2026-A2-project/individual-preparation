@@ -43,9 +43,9 @@ public final class VectorUtility {
      * @param x  the scalar value
      * @return the result of multiplying v1 by x
      */
-    public double[] multiply(double[] v1, int x) {
+    public double[] multiply(final double[] v1, final int x) {
         double[] result = new double[v1.length];
-        for(int i = 0; i < v1.length; i++) {
+        for (int i = 0; i < v1.length; i++) {
             result[i] = v1[i] * x;
         }
         return result;
@@ -58,7 +58,7 @@ public final class VectorUtility {
      * @param v2 the second vector
      * @return the dot product value
      */
-    public double dotProduct(double[] v1, double[] v2) {
+    public double dotProduct(final double[] v1, final double[] v2) {
         return 0.0;
     }
 
