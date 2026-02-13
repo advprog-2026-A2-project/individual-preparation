@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 final class ArithmeticUtilityTest {
 
+    /*Arithmetic utility under test.*/
     private ArithmeticUtility arithmeticUtility;
 
     @BeforeEach
