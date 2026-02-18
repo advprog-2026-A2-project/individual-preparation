@@ -19,7 +19,7 @@ permissions:
   contents: read
 jobs:
   go-test:
-    uses: ./.github/workflows/go-test-template.yml
+    uses: ./.github/workflows/workflow-securecloud.yml
   sonarqube:
     runs-on: github-ubuntu-latest-s
     needs: go-test
