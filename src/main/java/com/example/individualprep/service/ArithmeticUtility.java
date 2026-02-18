@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
  * This class provides methods for addition, subtraction, multiplication,
  * division, and exponentiation.
  */
+
 @Service
 public final class ArithmeticUtility {
 
